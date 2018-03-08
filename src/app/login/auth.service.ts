@@ -10,6 +10,7 @@ export class AuthService {
 
   login(login, password) {
     this.loggedIn = login === 'admin' && password === 'admin';
+    return !this.loggedIn;
   }
 
   isLoggedIn() {
