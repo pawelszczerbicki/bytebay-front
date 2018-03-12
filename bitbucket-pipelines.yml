@@ -1,0 +1,42 @@
+image: node
+pipelines:
+  branches:
+    master:
+      - step:
+          caches:
+            - node
+          script:
+            - apt-get update && apt-get install -y python-dev
+            - curl -O https://bootstrap.pypa.io/get-pip.py
+            - python get-pip.py
+            - pip install awscli
+            - npm install && npm run build
+            - aws s3 sync build/ s3://$BUCKET/admin
+            - aws configure set preview.cloudfront true
+            - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION --paths "/*"
+    dev:
+      - step:
+          caches:
+            - node
+          script:
+            - apt-get update && apt-get install -y python-dev
+            - curl -O https://bootstrap.pypa.io/get-pip.py
+            - python get-pip.py
+            - pip install awscli
+            - npm install && npm run build
+            - aws s3 sync build/ s3://$BUCKET/admin
+            - aws configure set preview.cloudfront true
+            - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION --paths "/*"
+    preprod:
+      - step:
+          caches:
+            - node
+          script:
+            - apt-get update && apt-get install -y python-dev
+            - curl -O https://bootstrap.pypa.io/get-pip.py
+            - python get-pip.py
+            - pip install awscli
+            - npm install && npm run build
+            - aws s3 sync build/ s3://$BUCKET/admin
+            - aws configure set preview.cloudfront true
+            - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION --paths "/*"
