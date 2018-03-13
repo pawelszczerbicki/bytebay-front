@@ -1,0 +1,16 @@
+import {Injectable} from '@angular/core';
+import {AngularFirestore} from 'angularfire2/firestore';
+import {Cross} from './cross';
+
+@Injectable()
+export class CrossesService {
+
+
+  constructor(private db: AngularFirestore) {
+  }
+
+  find() {
+    return return db.collection('users').valueChanges();
+
+  }
+}
