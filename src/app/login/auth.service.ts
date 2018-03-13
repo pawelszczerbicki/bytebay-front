@@ -1,24 +1,23 @@
 import {Injectable} from '@angular/core';
+import {AngularFireAuth} from 'angularfire2/auth';
 
 @Injectable()
 export class AuthService {
+  private user;
 
-  private loggedIn = false;
-
-  constructor() {
+  constructor(private firebase: AngularFireAuth) {
+    this.user = this.firebase.authState;
   }
 
-  login(login, password) {
-    this.loggedIn = login === 'admin' && password === 'admin';
-    return !this.loggedIn;
-  }
-
-  isLoggedIn() {
-    return this.loggedIn;
+  login(email: string, password: string) {
+    return this.firebase.auth.signInWithEmailAndPassword(email, password);
   }
 
   logout() {
-    this.loggedIn = false;
+    return this.firebase.auth.signOut();
   }
 
+  isLoggedIn() {
+    return this.user.map(user => !!user);
+  }
 }
