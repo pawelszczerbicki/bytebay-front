@@ -1,0 +1,13 @@
+image: node
+pipelines:
+  branches:
+    master:
+      - step:
+          caches:
+            - node
+          script:
+            - apt-get update && apt-get install -y python-dev
+            - curl -O https://bootstrap.pypa.io/get-pip.py
+            - python get-pip.py
+            - pip install awscli
+            - npm install && npm run build
