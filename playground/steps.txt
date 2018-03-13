@@ -1,0 +1,5 @@
+1. Install firebase and angularfire2 using `npm install firebase angularfire2`
+2. Copy content of login.guard.ts.tmpl to login.guard.ts
+3. Copy content of auth.service.ts.tmpl to auth.service.ts
+4. Add to imports in app.module.ts: AngularFireAuthModule     AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule
+5. Add to environment.ts and environment.prod.ts additional key called `firebase` and copy data from Firebase Console
