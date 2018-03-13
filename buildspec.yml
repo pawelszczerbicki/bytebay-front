@@ -8,7 +8,7 @@ phases:
       - npm run build
   post_build:
       commands:
-        - aws s3 sync dist/ s3://emoto-crosses
+        - aws s3 sync dist/ s3://$BUCKET
         - aws configure set preview.cloudfront true
         - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION --paths "/*"
 cache:
