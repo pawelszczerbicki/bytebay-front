@@ -118,10 +118,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 MIT
 MIT
 
+<<<<<<< HEAD
 angularfire2@5.0.0-rc.6
 MIT
 MIT
 
+=======
+>>>>>>> master
 @angular/common@5.2.7
 MIT
 MIT
