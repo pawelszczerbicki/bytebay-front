@@ -11,3 +11,6 @@ pipelines:
             - python get-pip.py
             - pip install awscli
             - npm install && npm run build
+            - aws s3 sync /dist s3://bucket
+            - aws configure set preview.cloudfront true
+            - aws cloudfront create-invalidation --distribution-id S11A16G5KZMEQD --paths /*
